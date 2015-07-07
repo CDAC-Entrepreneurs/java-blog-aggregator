@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 
 
-    <div class="container-start">
+<div class="container-start">
 hello from spring mvc...
 </div>

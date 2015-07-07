@@ -7,23 +7,52 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 public class Item {
 
-
 	@Id
 	@GeneratedValue
-	private int id;
-	
+	private Integer id;
+
+	@Column(length = 1000)
 	private String title;
-	
+
+	@Lob
+	@Type(type = "org.hibernate.type.StringClobType")
+	@Column(length = Integer.MAX_VALUE)
+	private String description;
+
+	@Column(name = "published_date")
+	private Date publishedDate;
+
+	@Column(length = 1000)
+	private String link;
+
 	@ManyToOne
-	@JoinColumn(name="blog_id")
+	@JoinColumn(name = "blog_id")
 	private Blog blog;
-	
-	
+
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -32,28 +61,12 @@ public class Item {
 		this.title = title;
 	}
 
-	private String link;
-	
-	
-	@Column(name="pulished_date")
-	private Date publishedDate;
-	
-	private String description;
-
-	public int getId() {
-		return id;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getPublishedDate() {
@@ -64,12 +77,12 @@ public class Item {
 		this.publishedDate = publishedDate;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getLink() {
+		return link;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }

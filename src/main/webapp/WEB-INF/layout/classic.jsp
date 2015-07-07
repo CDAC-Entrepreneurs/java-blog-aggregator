@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,16 +20,21 @@
 <style type="text/css">
 
 .container-start{
-padding-top:60px;}
+margin-top:60px;}
 
 .ag-center{
 text-align:center;
 margin-left:auto;
 margin-right:auto;
 }
+
+
 </style>
 </head>
 <body>
+
+<tilesx:useAttribute name="current"/>
+
 
  <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -43,17 +49,17 @@ margin-right:auto;
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href='<spring:url value="/index" />'>Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class=${current=="index"? "active":""}><a href='<spring:url value="/index" />'>Home</a></li>
+            <li class=${current=="users"? "active":""}><a href='<spring:url value="/users"></spring:url>'>Users</a></li>
+            <li class=${current=="register"? "active":""}><a href='<spring:url value="/register"></spring:url>'>Register</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-
+<div class="container-start">
 <tiles:insertAttribute name="body" />
-
+</div>
 <br /><br />
 
  <div class="ag-center"><tiles:insertAttribute name="footer" /></div>
