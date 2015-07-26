@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
   <definition name="common" template="/WEB-INF/layout/classic.jsp">
-    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="titlePage" value="Tiles tutorial homepage" />
       <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
 
   </definition>
@@ -39,6 +39,15 @@
       <put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
   <put-attribute name="current" value="register" />
   </definition>
+
+<definition name="login" extends="common">
+    <put-attribute name="title" value="Java Blog Aggregator" />
+        <put-attribute name="titlePage" value="Login" />
+    <put-attribute name="menu" value="/tiles/common_menu.jsp" />
+      <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+  <put-attribute name="current" value="login" />
+  </definition>
+
 
 
 </tiles-definitions>

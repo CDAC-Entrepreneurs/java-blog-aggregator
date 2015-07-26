@@ -4,10 +4,11 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><tiles:getAsString name="title"></tiles:getAsString>  </title>
+<title> <tiles:getAsString name="titlePage"></tiles:getAsString>   </title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -50,8 +51,17 @@ margin-right:auto;
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class=${current=="index"? "active":""}><a href='<spring:url value="/index" />'>Home</a></li>
+            
+           <security:authorize access="hasRole('ROLE_ADMIN')">
             <li class=${current=="users"? "active":""}><a href='<spring:url value="/users"></spring:url>'>Users</a></li>
-            <li class=${current=="register"? "active":""}><a href='<spring:url value="/register"></spring:url>'>Register</a></li>
+    	    </security:authorize>
+    	    
+    	  <li class=${current=="register"? "active":""}><a href='<spring:url value="/register"></spring:url>'>Register</a></li>
+			
+			 <security:authorize access="! isAuthenticated()">
+			<li class=${current=="login"? "active":""}><a href='<spring:url value="/login"></spring:url>'>Login</a></li>
+          </security:authorize>
+          
           </ul>
         </div><!--/.nav-collapse -->
       </div>
