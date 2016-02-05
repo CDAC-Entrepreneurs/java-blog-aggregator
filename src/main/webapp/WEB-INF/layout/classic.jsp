@@ -62,6 +62,10 @@ margin-right:auto;
 			<li class=${current=="login"? "active":""}><a href='<spring:url value="/login"></spring:url>'>Login</a></li>
           </security:authorize>
           
+           <security:authorize access="isAuthenticated()">
+			<li class=${current=="account"? "active":""}><a href='<spring:url value="/account"></spring:url>'>My Account</a></li>
+          </security:authorize>
+          
           </ul>
         </div><!--/.nav-collapse -->
       </div>
